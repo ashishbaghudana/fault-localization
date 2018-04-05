@@ -27,7 +27,7 @@ wget --recursive --no-parent --accept gzoltar-files.tar.gz http://fault-localiza
 Subsequently extract the matrix and coverage to a directory using the `matrix_coverage.py` file.
 
 ```text
-Uuage: matrix_coverage.py [-h] --data-dir DATA_DIR --output-dir OUTPUT_DIR
+usage: matrix_coverage.py [-h] --data-dir DATA_DIR --output-dir OUTPUT_DIR
 
 optional arguments:
   -h, --help            show this help message and exit
