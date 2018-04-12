@@ -35,7 +35,7 @@ def classname_to_filename(classname):
     return classname.replace('.', '/') + '.java'
 
 
-def stmt_to_line(stmt):
+def stmt_to_line(statement):
     """
     Convert statement to line
 
@@ -49,8 +49,8 @@ def stmt_to_line(stmt):
     str
         line number in file
     """
-    classname, lineno = stmt.rsplit('#', 1)
-    return '{}#{}'.format(classname_to_filename(classname), lineno)
+    classname, line_number = statement.rsplit('#', 1)
+    return '{}#{}'.format(classname_to_filename(classname), line_number)
 
 
 def convert_statement_to_line(source_code_lines_file, statement_suspiciousness, output_file):
@@ -97,7 +97,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     for project, bugs in zip(PROJECTS, PROJECT_BUGS):
-        # Lang-3b.source-code.lines
         for bug in bugs:
             source_code_lines_file = os.path.join(args.source_code_lines, 
                     '%s-%sb%s' % (project, bug, SOURCE_CODE_SUFFIX))

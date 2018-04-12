@@ -45,7 +45,6 @@ def extract_files(data_dir, output_dir):
                 write_file(spectra_file, spectra)
 
 
-
 def extract_tar_file(tar):
     """
     Extract a tar file and return the matrix and spectra content
