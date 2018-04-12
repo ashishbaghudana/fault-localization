@@ -33,10 +33,11 @@ class Dataset(object):
             Output file to write the dataset to
         """
         output = []
-        columns = 'project,bug'
+        columns = 'project,bug,'
+        columns += ','.join(['line_%s' % (i+1) for i in range(self.num_lines)])
         for formula in FORMULA:
             for i in range(self.num_lines):
-                columns += ',line_%s_%s' % (i, formula)
+                columns += ',line_%s_%s' % (i+1, formula)
         output.append(columns)
         for project in PROJECTS:
             for bug in self.rows[project]:
@@ -62,13 +63,13 @@ class Row(object):
         for formula in FORMULA:
             self.data[formula] = []
 
-    def to_csv(self, verbose=False):
+    def to_csv(self):
+        lines_output = ','.join(self.lines)
         suspiciousness = []
-        if not verbose:
-            for formula in FORMULA:
-                susp = ','.join([str(x) for x in self.data[formula]])
-                suspiciousness.append(susp)
-            return '%s,%s,' % (self.project, self.bug_id) + ','.join(suspiciousness)
+        for formula in FORMULA:
+            susp = ','.join([str(x) for x in self.data[formula]])
+            suspiciousness.append(susp)
+        return '%s,%s,%s,' % (self.project, self.bug_id, lines_output) + ','.join(suspiciousness)
 
 
 def add_rows_for_formula(dataset, data_dir, formula):
@@ -151,4 +152,4 @@ if __name__ == '__main__':
     for formula in FORMULA:
         if formula != args.formula:
             add_rows_for_formula(dataset, args.data_dir, formula)
-    dataset.to_csv(os.path.join(args.output_dir, 'dataset.csv'))
+    dataset.to_csv(os.path.join(args.output_dir, 'dataset-%s-%s.csv' % (args.formula, args.num_lines)))
