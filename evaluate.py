@@ -41,7 +41,7 @@ def calculate_accuracy(input_dir, bug_dir, top_n):
     for project, bugs in zip(PROJECTS, PROJECT_BUGS):
         for bug in bugs:
             try:
-                input_file = os.path.join(input_dir, 'reweighted-%s-%s.csv' % (project, bug))
+                input_file = os.path.join(input_dir, '%s-%s-sorted-susp' % (project, bug))
                 reweighted_lines = get_reweighted_lines(input_file, top_n)
                 bug_file = os.path.join(bug_dir, '%s-%s.%s' % (project, bug, BUGGY_LINES_SUFFIX))
                 buggy_lines = get_buggy_lines(bug_file)
