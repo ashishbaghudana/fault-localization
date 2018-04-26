@@ -16,6 +16,8 @@ These are:
 
 We use the Defects4J dataset available [here](https://github.com/rjust/defects4j). The dataset has 395 real bugs from 6 Java projects - Lang, Closure, Chart, Mockito, Time, and Math.
 
+Specifically, we use only Lang and Math for our research results.
+
 ## Setup
 
 Download the data by running the following command.
